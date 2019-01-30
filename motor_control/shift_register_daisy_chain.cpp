@@ -60,21 +60,15 @@ int main(int argc, char **argv)
 	digitalWrite(clockPin, LOW);
 	digitalWrite(latchPin, HIGH);
 	
-	for (;;)
-	{
-		int a = 0b0000000000000000;
-		int b = 0b1111111111111111;
+	for (int value = 0; value < 2^16; value++)
+	{		
+		shiftOut(dataPin, clockPin, latchPin, value, 16);
+		delay(500);
+		printf("%d\n", value);
 		
-		shiftOut(dataPin, clockPin, latchPin, a, 16);
-		delay(2000);
-		printf("\n off");
-		
-		shiftOut(dataPin, clockPin, latchPin, b, 16);
-		delay(2000);
-		printf("\n on");
-		
+		shiftOut(dataPin, clockPin, latchPin, 0, 16);
+		delay(500);
+		printf("%d\n", 0);
 	}
-	
-	
 }
 
