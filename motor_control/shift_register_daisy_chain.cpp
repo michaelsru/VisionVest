@@ -25,50 +25,114 @@
 #include <wiringPi.h>
 #include <wiringShift.h>
 #include <sr595.h>
+#include <pthread.h>
 #include <iostream>
+#include <mutex>
+
+const int DATA_FREQ = 60;
+const int PWM_FREQ = 60;
+const int DATA_PIN = 0;
+const int LATCH_PIN = 2;
+const int CLOCK_PIN = 1;
+const int BUF_SIZE = 64;
+
+mutex mtx;
+
+typedef struct thread_data
+{
+	int *values;
+	int *intensities;
+	int *counter;
+	int *cur_index;
+} thread_data_t;
 
 //MSB FIRST ALWAYS
-void shiftOut(int dataPin, int clockPin, int latchPin, int value, int size)
+void shiftOut(int DATA_PIN, int CLOCK_PIN, int LATCH_PIN, int value, int size)
 {
-	digitalWrite(latchPin, 0);
+	digitalWrite(LATCH_PIN, 0);
 	
 	for (int i=size-1; i>=0; i--)
 	{
-		digitalWrite(dataPin, value & (1<<i));
+		digitalWrite(DATA_PIN, value & (1<<i));
 		
-		digitalWrite(clockPin, HIGH); delayMicroseconds(1);
-		digitalWrite(clockPin, LOW); delayMicroseconds(1);
+		digitalWrite(CLOCK_PIN, HIGH); delayMicroseconds(1);
+		digitalWrite(CLOCK_PIN, LOW); delayMicroseconds(1);
 	}
 	
-	digitalWrite(latchPin, 1);
-	
+	digitalWrite(LATCH_PIN, 1);
+}
+
+void motorControl()
+{
+	int value, intensity;
+	bool, values_left;
+	do{
+		values_left = false;
+		mtx.lock();
+		if (counter != cur_index)
+		{
+			values_left = true;
+			value = values[cur_index];
+			intensity = intensities[cur_index];
+		}
+		mtx.unlock();
+		if (values_left)
+		{
+			for (int i = 0; i < 60; i++)
+			{
+				shiftOut(DATA_PIN, CLOCK_PIN, LATCH_PIN, value, size);
+				delay(500);
+				printf("%d\n", value);
+
+				delay(1/PWM_FREQ - (100-intensity) * 1/PWM_FREQ);
+
+				shiftOut(DATA_PIN, CLOCK_PIN, LATCH_PIN, 0, 16);
+				delay(500);
+				printf("%d\n", 0);
+				
+				delay(1/PWM_FREQ - (intensity) * 1/PWM_FREQ);
+			}
+			(cur_index++) % BUF_SIZE;
+		}
+	} while (true)
 }
 
 int main(int argc, char **argv)
 {
-	const int dataPin = 0;
-	const int latchPin = 2;
-	const int clockPin = 1;
+	int counter = 0, cur_index = 0;
 	
 	wiringPiSetup();
 	
-	pinMode(dataPin, OUTPUT);
-	pinMode(latchPin, OUTPUT);
-	pinMode(clockPin, OUTPUT);
+	pinMode(DATA_PIN, OUTPUT);
+	pinMode(LATCH_PIN, OUTPUT);
+	pinMode(CLOCK_PIN, OUTPUT);
 	
-	digitalWrite(dataPin, LOW);
-	digitalWrite(clockPin, LOW);
-	digitalWrite(latchPin, HIGH);
+	digitalWrite(DATA_PIN, LOW);
+	digitalWrite(CLOCK_PIN, LOW);
+	digitalWrite(LATCH_PIN, HIGH);
+
+	int values[BUF_SIZE];
+	int intensities[BUF_SIZE];
+
+	pthread_t *motor_control_thread, *listener_thread;
+	thread_data_t thread_data;
+	thread_data.values = values;
+	thread_data.intensities = intensities;
+	thread_data.counter = &counter;
+	thread_data.cur_index = &cur_index;
+
+	pthread_create(motor_control_thread, NULL, motorControl, &thread_data)
 	
-	for (int value = 0; value < 2^16; value++)
-	{		
-		shiftOut(dataPin, clockPin, latchPin, value, 16);
-		delay(500);
-		printf("%d\n", value);
-		
-		shiftOut(dataPin, clockPin, latchPin, 0, 16);
-		delay(500);
-		printf("%d\n", 0);
+	for (;;)
+	{
+		for (int value = 0; value < 2^16; value++)
+		{
+			mtx.lock()
+			values[counter] = value;
+			intensities[counter] = rand() % 100 + 1;
+			(counter++) % BUF_SIZE;
+			mtx.unlock();
+			delay(20);
+		}
 	}
 }
-
