@@ -35,13 +35,14 @@ const int DATA_PIN = 0;
 const int LATCH_PIN = 2;
 const int CLOCK_PIN = 1;
 const int BUF_SIZE = 64;
+const int NUM_MOTORS = 96;
+const int NUM_INTENSITIES = 10;
 
 mutex mtx;
 
 typedef struct thread_data
 {
-	int *values;
-	int *intensities;
+	int **intensities;
 	int *counter;
 	int *cur_index;
 } thread_data_t;
@@ -64,33 +65,33 @@ void shiftOut(int DATA_PIN, int CLOCK_PIN, int LATCH_PIN, int value, int size)
 
 void motorControl()
 {
-	int value, intensity;
+	int value, intensity_map[NUM_MOTORS];
 	bool, values_left;
+	int mask[NUM_INTENSITIES-1];
 	do{
 		values_left = false;
 		mtx.lock();
 		if (counter != cur_index)
 		{
 			values_left = true;
-			value = values[cur_index];
-			intensity = intensities[cur_index];
+			intensity_map = intensities[cur_index];
 		}
 		mtx.unlock();
 		if (values_left)
 		{
-			for (int i = 0; i < 60; i++)
+			for (int i = 0; i < PWM_FREQ * NUM_INTENSITIES; i++)
 			{
-				shiftOut(DATA_PIN, CLOCK_PIN, LATCH_PIN, value, size);
+				mask = 0;
+				for (int j = 0; j < NUM_MOTORS; j++)
+				{
+					mask |= (1 << j) & (intensity_map[j] > (i % NUM_INTENSITIES / NUM_INTENSITIES))
+				}
+
+				shiftOut(DATA_PIN, CLOCK_PIN, LATCH_PIN, mask, size);
 				delay(500);
-				printf("%d\n", value);
+				printf("%d\n", mask);
 
 				delay(1/PWM_FREQ - (100-intensity) * 1/PWM_FREQ);
-
-				shiftOut(DATA_PIN, CLOCK_PIN, LATCH_PIN, 0, 16);
-				delay(500);
-				printf("%d\n", 0);
-				
-				delay(1/PWM_FREQ - (intensity) * 1/PWM_FREQ);
 			}
 			(cur_index++) % BUF_SIZE;
 		}
@@ -112,7 +113,7 @@ int main(int argc, char **argv)
 	digitalWrite(LATCH_PIN, HIGH);
 
 	int values[BUF_SIZE];
-	int intensities[BUF_SIZE];
+	int intensities[BUF_SIZE][NUM_MOTORS];
 
 	pthread_t *motor_control_thread, *listener_thread;
 	thread_data_t thread_data;
@@ -125,11 +126,10 @@ int main(int argc, char **argv)
 	
 	for (;;)
 	{
-		for (int value = 0; value < 2^16; value++)
+		for (int i = 0; i < 96; i++)
 		{
 			mtx.lock()
-			values[counter] = value;
-			intensities[counter] = rand() % 100 + 1;
+			intensities[counter][i] = rand() % NUM_INTENSITIES;
 			(counter++) % BUF_SIZE;
 			mtx.unlock();
 			delay(20);
