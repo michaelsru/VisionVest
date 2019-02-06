@@ -27,6 +27,8 @@
 #include <sr595.h>
 //#include <pthread.h>
 #include <iostream>
+#include <string.h>
+//#include <cstdio>
 //#include <mutex>
 //#include <boost/multiprecision/cpp_int.hpp>
 
@@ -39,7 +41,7 @@ static const int LATCH_PIN = 2;
 static const int CLOCK_PIN = 1;
 //const int BUF_SIZE = 64; //should only really have 1 intensity map at a time.
 static const int NUM_MOTORS = 32;
-static const int NUM_INTENSITIES = 10; // the levels of intensities, also # of frames to complete a map.
+static const int NUM_INTENSITIES = 512; // the levels of intensities, also # of frames to complete a map.
 
 //mutex mtx;
 /*
@@ -70,6 +72,8 @@ int main(int argc, char **argv)
 {
 	//int counter = 0, cur_index = 0;
 	
+	std::cout << "start" << std::endl;
+	//printf("start1");
 	wiringPiSetup();
 	
 	pinMode(DATA_PIN, OUTPUT);
@@ -82,14 +86,16 @@ int main(int argc, char **argv)
 
 	int map[NUM_MOTORS];
 	int frames[NUM_INTENSITIES]; //each int128 is a "frame" of ~96~ bits
-	bool new_msg_received = false;
-
+	bool new_msg_received = true;
+	
+	std::cout << "program started" << std::endl;
 	//infinite loop to check for new intensity maps from camera
 	for (;;)
 	{
 		//check for intensity map somehow
 		if (new_msg_received) 
 		{
+			std::cout << "new msg received" << std::endl;
 			new_msg_received = false;
 			//flush current frames
 			memset(frames,0,sizeof(frames));
@@ -103,9 +109,9 @@ int main(int argc, char **argv)
 			//populate the frames arr to loop through later
 			for (int i=NUM_MOTORS; i>0; i--)
 			{
-				for (int j=0; j<map[i]; j)
+				for (int j=0; j<map[i]; j++)
 				{
-					frames[j] | 1<<i;
+					frames[j] |= 1<<i;
 				}
 			}
 		}
@@ -113,7 +119,12 @@ int main(int argc, char **argv)
 		// go through map (at least once) to get a full "cycle" of the PWM
 		for (int i=0; i< NUM_INTENSITIES; i++) 
 		{
-			shiftOut(frames[i], 32);
+			std::cout << "shift out frames: " << frames[i] << std::endl;
+			//shiftOut(frames[i], 32);
+			shiftOut(511, 10);
+			delay(500);
+			shiftOut(0, 10);
+			delay(500);
 		}
 
 
