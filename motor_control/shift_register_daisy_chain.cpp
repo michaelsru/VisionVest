@@ -25,12 +25,12 @@
 #include <wiringPi.h>
 #include <wiringShift.h>
 #include <sr595.h>
-#include <pthread.h>
+//#include <pthread.h>
 #include <iostream>
 //#include <mutex>
-#include <boost/multiprecision/cpp_int.hpp>
+//#include <boost/multiprecision/cpp_int.hpp>
 
-using namespace boost::multiprecision;
+//using namespace boost::multiprecision;
 
 //const int DATA_FREQ = 60; //should be whenever it comes in
 //const int PWM_FREQ = 60; //maybe limit, otherwise as fast as possible
@@ -38,7 +38,7 @@ static const int DATA_PIN = 0;
 static const int LATCH_PIN = 2;
 static const int CLOCK_PIN = 1;
 //const int BUF_SIZE = 64; //should only really have 1 intensity map at a time.
-static const int NUM_MOTORS = 96;
+static const int NUM_MOTORS = 32;
 static const int NUM_INTENSITIES = 10; // the levels of intensities, also # of frames to complete a map.
 
 //mutex mtx;
@@ -51,13 +51,13 @@ typedef struct thread_data
 } thread_data_t;
 */
 //MSB FIRST ALWAYS
-void shiftOut(void * value, int size)
+void shiftOut(int value, int size)
 {
 	digitalWrite(LATCH_PIN, 0);
 	
 	for (int i=size-1; i>=0; i--)
 	{
-		digitalWrite(DATA_PIN, (int128_t)*value & (1<<i));
+		digitalWrite(DATA_PIN, value & (1<<i));
 		
 		digitalWrite(CLOCK_PIN, HIGH); delayMicroseconds(1);
 		digitalWrite(CLOCK_PIN, LOW); delayMicroseconds(1);
@@ -81,7 +81,7 @@ int main(int argc, char **argv)
 	digitalWrite(LATCH_PIN, HIGH);
 
 	int map[NUM_MOTORS];
-	int128_t frames[NUM_INTENSITIES]; //each int128 is a "frame" of ~96~ bits
+	int frames[NUM_INTENSITIES]; //each int128 is a "frame" of ~96~ bits
 	bool new_msg_received = false;
 
 	//infinite loop to check for new intensity maps from camera
@@ -113,7 +113,7 @@ int main(int argc, char **argv)
 		// go through map (at least once) to get a full "cycle" of the PWM
 		for (int i=0; i< NUM_INTENSITIES; i++) 
 		{
-			shiftOut(frames[i], 128);
+			shiftOut(frames[i], 32);
 		}
 
 
