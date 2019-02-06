@@ -27,34 +27,37 @@
 #include <sr595.h>
 #include <pthread.h>
 #include <iostream>
-#include <mutex>
+//#include <mutex>
+#include <boost/multiprecision/cpp_int.hpp>
 
-const int DATA_FREQ = 60;
-const int PWM_FREQ = 60;
-const int DATA_PIN = 0;
-const int LATCH_PIN = 2;
-const int CLOCK_PIN = 1;
-const int BUF_SIZE = 64;
-const int NUM_MOTORS = 96;
-const int NUM_INTENSITIES = 10;
+using namespace boost::multiprecision;
 
-mutex mtx;
+//const int DATA_FREQ = 60; //should be whenever it comes in
+//const int PWM_FREQ = 60; //maybe limit, otherwise as fast as possible
+static const int DATA_PIN = 0;
+static const int LATCH_PIN = 2;
+static const int CLOCK_PIN = 1;
+//const int BUF_SIZE = 64; //should only really have 1 intensity map at a time.
+static const int NUM_MOTORS = 96;
+static const int NUM_INTENSITIES = 10; // the levels of intensities, also # of frames to complete a map.
 
+//mutex mtx;
+/*
 typedef struct thread_data
 {
 	int **intensities;
 	int *counter;
 	int *cur_index;
 } thread_data_t;
-
+*/
 //MSB FIRST ALWAYS
-void shiftOut(int DATA_PIN, int CLOCK_PIN, int LATCH_PIN, int value, int size)
+void shiftOut(void * value, int size)
 {
 	digitalWrite(LATCH_PIN, 0);
 	
 	for (int i=size-1; i>=0; i--)
 	{
-		digitalWrite(DATA_PIN, value & (1<<i));
+		digitalWrite(DATA_PIN, (int128_t)*value & (1<<i));
 		
 		digitalWrite(CLOCK_PIN, HIGH); delayMicroseconds(1);
 		digitalWrite(CLOCK_PIN, LOW); delayMicroseconds(1);
@@ -63,44 +66,9 @@ void shiftOut(int DATA_PIN, int CLOCK_PIN, int LATCH_PIN, int value, int size)
 	digitalWrite(LATCH_PIN, 1);
 }
 
-void motorControl()
-{
-	int value, intensity_map[NUM_MOTORS];
-	bool, values_left;
-	int mask[NUM_INTENSITIES-1];
-	do{
-		values_left = false;
-		mtx.lock();
-		if (counter != cur_index)
-		{
-			values_left = true;
-			intensity_map = intensities[cur_index];
-		}
-		mtx.unlock();
-		if (values_left)
-		{
-			for (int i = 0; i < PWM_FREQ * NUM_INTENSITIES; i++)
-			{
-				mask = 0;
-				for (int j = 0; j < NUM_MOTORS; j++)
-				{
-					mask |= (1 << j) & (intensity_map[j] > (i % NUM_INTENSITIES / NUM_INTENSITIES))
-				}
-
-				shiftOut(DATA_PIN, CLOCK_PIN, LATCH_PIN, mask, size);
-				delay(500);
-				printf("%d\n", mask);
-
-				delay(1/PWM_FREQ - (100-intensity) * 1/PWM_FREQ);
-			}
-			(cur_index++) % BUF_SIZE;
-		}
-	} while (true)
-}
-
 int main(int argc, char **argv)
 {
-	int counter = 0, cur_index = 0;
+	//int counter = 0, cur_index = 0;
 	
 	wiringPiSetup();
 	
@@ -112,6 +80,46 @@ int main(int argc, char **argv)
 	digitalWrite(CLOCK_PIN, LOW);
 	digitalWrite(LATCH_PIN, HIGH);
 
+	int map[NUM_MOTORS];
+	int128_t frames[NUM_INTENSITIES]; //each int128 is a "frame" of ~96~ bits
+	bool new_msg_received = false;
+
+	//infinite loop to check for new intensity maps from camera
+	for (;;)
+	{
+		//check for intensity map somehow
+		if (new_msg_received) 
+		{
+			new_msg_received = false;
+			//flush current frames
+			memset(frames,0,sizeof(frames));
+
+			//for now, just use this temp bullshit thing to create map
+			for (int i=0; i<NUM_MOTORS; i++)
+			{
+				map[i] = i%NUM_INTENSITIES;
+			}		
+
+			//populate the frames arr to loop through later
+			for (int i=NUM_MOTORS; i>0; i--)
+			{
+				for (int j=0; j<map[i]; j)
+				{
+					frames[j] | 1<<i;
+				}
+			}
+		}
+
+		// go through map (at least once) to get a full "cycle" of the PWM
+		for (int i=0; i< NUM_INTENSITIES; i++) 
+		{
+			shiftOut(frames[i], 128);
+		}
+
+
+	}
+
+	/*
 	int values[BUF_SIZE];
 	int intensities[BUF_SIZE][NUM_MOTORS];
 
@@ -135,4 +143,5 @@ int main(int argc, char **argv)
 			delay(20);
 		}
 	}
+	*/
 }
