@@ -18,13 +18,13 @@
 #include <chrono>
 #include <cmath>
 #include <sample_utils/PlatformResources.hpp>
-#include <sample_utils/EventReporter.hpp>
-//~ #include <sample_utils/shared_memory_object.hpp>
-//~ #include <sample_utils/mapped_region.hpp>
+
+#include <sample_utils/shared_memory_object.hpp>
+#include <sample_utils/mapped_region.hpp>
 
 using namespace sample_utils;
 using namespace std;
-//~ using namespace boost::interprocess;
+using namespace boost::interprocess;
 
 /**
  * A listener which receives a callback to onNewData when each depth frame is captured.
@@ -308,6 +308,15 @@ public:
         // sending response to the motors
         //~ int *res = static_cast<int* [8][12]>(region.get_address());
         //~ *res = response;
+        
+        shared_memory_object shdmem{open_or_create, "Boost", read_write};
+        shdmem.truncate(1024);
+        mapped_region region{shdmem, read_write};
+        int *i1 = static_cast<int*>(region.get_address());
+        *i1 = i;
+        std::cout << "writing " << *i1 << '\n';
+        int *i2 = static_cast<int*>(region.get_address());
+        std::cout << "reading " << *i2 << '\n';
         
         //~ cout << "PRINTING THE RESPONSE MATRIX" << endl;
         for (int y=0;y<3;y++){

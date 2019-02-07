@@ -8,9 +8,7 @@ link_directories(${royale_LIB_DIR})
 
 project (sampleRetrieveData)
 
-include_directories(
-  ${CMAKE_CURRENT_SOURCE_DIR}/../../inc
-)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../inc)
 
 add_executable(sampleRetrieveData
    sampleRetrieveData.cpp
@@ -18,4 +16,6 @@ add_executable(sampleRetrieveData
 
 COPY_ROYALE_LIBS(sampleRetrieveData)
 
-target_link_libraries(sampleRetrieveData "${royale_LIBS}")
+target_link_libraries(
+   sampleRetrieveData "${royale_LIBS}" -lrt 
+)
