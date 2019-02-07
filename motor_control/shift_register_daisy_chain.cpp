@@ -25,33 +25,18 @@
 #include <wiringPi.h>
 #include <wiringShift.h>
 #include <sr595.h>
-//#include <pthread.h>
 #include <iostream>
 #include <string.h>
-//#include <cstdio>
-//#include <mutex>
-//#include <boost/multiprecision/cpp_int.hpp>
 
-//using namespace boost::multiprecision;
+#include <bitset>
 
-//const int DATA_FREQ = 60; //should be whenever it comes in
-//const int PWM_FREQ = 60; //maybe limit, otherwise as fast as possible
 static const int DATA_PIN = 0;
 static const int LATCH_PIN = 2;
 static const int CLOCK_PIN = 1;
 //const int BUF_SIZE = 64; //should only really have 1 intensity map at a time.
-static const int NUM_MOTORS = 32;
-static const int NUM_INTENSITIES = 512; // the levels of intensities, also # of frames to complete a map.
+static const int NUM_MOTORS = 9;
+static const int NUM_INTENSITIES = 10; // the levels of intensities, also # of frames to complete a map.
 
-//mutex mtx;
-/*
-typedef struct thread_data
-{
-	int **intensities;
-	int *counter;
-	int *cur_index;
-} thread_data_t;
-*/
 //MSB FIRST ALWAYS
 void shiftOut(int value, int size)
 {
@@ -70,12 +55,10 @@ void shiftOut(int value, int size)
 
 int main(int argc, char **argv)
 {
-	//int counter = 0, cur_index = 0;
-	
 	std::cout << "start" << std::endl;
-	//printf("start1");
 	wiringPiSetup();
 	
+	// initialize shift register and RPi pins
 	pinMode(DATA_PIN, OUTPUT);
 	pinMode(LATCH_PIN, OUTPUT);
 	pinMode(CLOCK_PIN, OUTPUT);
@@ -84,34 +67,43 @@ int main(int argc, char **argv)
 	digitalWrite(CLOCK_PIN, LOW);
 	digitalWrite(LATCH_PIN, HIGH);
 
-	int map[NUM_MOTORS];
+	//int map[NUM_MOTORS];
 	int frames[NUM_INTENSITIES]; //each int128 is a "frame" of ~96~ bits
 	bool new_msg_received = true;
 	
-	std::cout << "program started" << std::endl;
+	int arr[] = {3, 10, 10, 4, 5, 6, 7, 8, 9};
+	
+	//std::cout << "program started" << std::endl;
 	//infinite loop to check for new intensity maps from camera
 	for (;;)
 	{
 		//check for intensity map somehow
 		if (new_msg_received) 
 		{
-			std::cout << "new msg received" << std::endl;
+			//std::cout << "new msg received" << std::endl;
 			new_msg_received = false;
+			
 			//flush current frames
 			memset(frames,0,sizeof(frames));
-
-			//for now, just use this temp bullshit thing to create map
-			for (int i=0; i<NUM_MOTORS; i++)
+			
+			for (int i=0; i<NUM_INTENSITIES-1; i++) //iterating through each frame
 			{
-				map[i] = i%NUM_INTENSITIES;
-			}		
-
-			//populate the frames arr to loop through later
-			for (int i=NUM_MOTORS; i>0; i--)
-			{
-				for (int j=0; j<map[i]; j++)
+				for (int j=0; j<9; j++) //iterating through each motor on the frame
 				{
-					frames[j] |= 1<<i;
+					frames[i] |= (arr[j] > i) << j; //should populate each frame with correct PWM command
+					//std::cout << "shift out frames (binary): " << std::bitset<32>(frames[0]) << std::endl;
+					/*
+						msg:       0 9 4 6 7
+						frames[0]: 0 1 1 1 1
+						frames[1]: 0 1 1 1 1
+						frames[2]: 0 1 1 1 1
+						frames[3]: 0 1 1 1 1
+						frames[4]: 0 1 0 1 1
+						frames[5]: 0 1 0 1 1
+						frames[6]: 0 1 0 0 1
+						frames[7]: 0 1 0 0 0
+						frames[8]: 0 1 0 0 0
+					*/
 				}
 			}
 		}
@@ -119,40 +111,14 @@ int main(int argc, char **argv)
 		// go through map (at least once) to get a full "cycle" of the PWM
 		for (int i=0; i< NUM_INTENSITIES; i++) 
 		{
-			std::cout << "shift out frames: " << frames[i] << std::endl;
-			//shiftOut(frames[i], 32);
-			shiftOut(511, 10);
-			delay(500);
+			//std::cout << "shift out frames: " << frames[i] << " binary: " << std::bitset<32>(frames[i]) << std::endl;
+			//shiftOut(frames[i], NUM_MOTORS);
+			//delay(1);
+			//shiftOut(511, 10);
+			//delay(500);
 			shiftOut(0, 10);
-			delay(500);
+			//delay(500);
 		}
-
-
+		//delay(3000);
 	}
-
-	/*
-	int values[BUF_SIZE];
-	int intensities[BUF_SIZE][NUM_MOTORS];
-
-	pthread_t *motor_control_thread, *listener_thread;
-	thread_data_t thread_data;
-	thread_data.values = values;
-	thread_data.intensities = intensities;
-	thread_data.counter = &counter;
-	thread_data.cur_index = &cur_index;
-
-	pthread_create(motor_control_thread, NULL, motorControl, &thread_data)
-	
-	for (;;)
-	{
-		for (int i = 0; i < 96; i++)
-		{
-			mtx.lock()
-			intensities[counter][i] = rand() % NUM_INTENSITIES;
-			(counter++) % BUF_SIZE;
-			mtx.unlock();
-			delay(20);
-		}
-	}
-	*/
 }
