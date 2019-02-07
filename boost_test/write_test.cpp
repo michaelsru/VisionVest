@@ -11,12 +11,13 @@ int main()
   mapped_region region{shdmem, read_write};
   int i = 0;
   while (true) {
-    int *i1 = static_cast<int*>(region.get_address());
-    *i1 = i;
-    std::cout << "writing " << *i1 << '\n';
-    i += 1;
-    if (i==100){
-      i = 0;
-    }
+    char* res_string = "hello world";
+    std::strcpy(static_cast<char* >(region.get_address()), res_string);
+    //~ *i1 = i;
+    //~ std::cout << "writing " << *i1 << '\n';
+    //~ i += 1;
+    //~ if (i==100){
+      //~ i = 0;
+    //~ }
   }
 }

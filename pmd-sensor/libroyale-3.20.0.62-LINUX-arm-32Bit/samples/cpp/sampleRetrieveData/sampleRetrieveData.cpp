@@ -18,6 +18,7 @@
 #include <chrono>
 #include <cmath>
 #include <sample_utils/PlatformResources.hpp>
+#include <string>
 
 #include <sample_utils/shared_memory_object.hpp>
 #include <sample_utils/mapped_region.hpp>
@@ -39,6 +40,7 @@ using namespace boost::interprocess;
  * data in a thread-safe way between the two callbacks.  If your application will only process
  * recorded files, then the sampleExportPLY shows a much simpler IDepthDataListener.
  */
+ 
 class MyListener : public royale::IDepthDataListener
 {
     /**
@@ -109,6 +111,7 @@ public:
     void onNewData (const royale::DepthData *data) override
     {
         // Demonstration of how to retrieve the exposure times for the current stream. This is a
+        // vector which can contain several numbers, because the depth frame is calculated from
         // vector which can contain several numbers, because the depth frame is calculated from
         // several individual raw frames.
         auto exposureTimes = data->exposureTimes;
@@ -258,7 +261,7 @@ public:
             int horizontal_position = 0;
             std::string line_data = line.data();
             std::string avg_horizontal = "";
-            cout << "printing line: " << i << " "<< string (line.data(), line.size()) << endl;
+            //~ cout << "printing line: " << i << " "<< string (line.data(), line.size()) << endl;
             for (char& c :  line_data) {
                 if (k == 49) {
                     break;
@@ -286,6 +289,7 @@ public:
         
         
         // Verticle avg
+        std::string res_string;
         int response [3][3];
         for (int y=14; y <= 42; y+=14){
                 for (int x=0; x<3; x++) {
@@ -298,25 +302,22 @@ public:
                     int res_y = int(y/14) - 1;
                     //~ cout << "(x->" << x << "y-> "<< res_y <<")"  << int(temp/5) << "--";
                     response[res_y][x] = int(temp/14);
+                    res_string.append(std::to_string(int(temp/14)));
                 }
                 //~ cout << endl;
         }
+        cout << "printing string" << res_string << endl;
+        // Response array to string
         
-        //~ std::string response_string = "[";
         
-        
-        // sending response to the motors
-        //~ int *res = static_cast<int* [8][12]>(region.get_address());
-        //~ *res = response;
-        
-        shared_memory_object shdmem{open_or_create, "Boost", read_write};
+        // Interprocess  
+        shared_memory_object shdmem{open_or_create, "MotorControl", read_write};
         shdmem.truncate(1024);
         mapped_region region{shdmem, read_write};
-        int *i1 = static_cast<int*>(region.get_address());
-        *i1 = i;
-        std::cout << "writing " << *i1 << '\n';
-        int *i2 = static_cast<int*>(region.get_address());
-        std::cout << "reading " << *i2 << '\n';
+    
+        std::strcpy(static_cast<char* >(region.get_address()), res_string.c_str());
+        //~ *write_to_motor = res_string;
+        //~ std::cout << "writing " << *write_to_motor << '\n';
         
         //~ cout << "PRINTING THE RESPONSE MATRIX" << endl;
         for (int y=0;y<3;y++){
@@ -416,11 +417,6 @@ int main (int argc, char **argv)
     unique_ptr<royale::String> rrfFile;
     // if non-null, choose this use case instead of the default
     unique_ptr<royale::String> commandLineUseCase;
-    
-    // Set up boost interprocess
-    //~ shared_memory_object shdmem{open_or_create, "Boost", read_write};
-    //~ shdmem.truncate(1024);
-    //~ mapped_region region{shdmem, read_write};
 
     if (argc > 1)
     {

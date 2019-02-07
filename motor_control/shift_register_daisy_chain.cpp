@@ -30,6 +30,11 @@
 
 #include <bitset>
 
+#include <boost/interprocess/shared_memory_object.hpp>
+#include <boost/interprocess/mapped_region.hpp>
+
+using namespace boost::interprocess;
+
 static const int DATA_PIN = 0;
 static const int LATCH_PIN = 2;
 static const int CLOCK_PIN = 1;
@@ -71,16 +76,28 @@ int main(int argc, char **argv)
 	int frames[NUM_INTENSITIES]; //each int128 is a "frame" of ~96~ bits
 	bool new_msg_received = true;
 	
-	int arr[] = {0, 0, 0, 0, 0, 0, 0, 0, 02};
+	//interprocess
+	shared_memory_object shdmem{open_only, "MotorControl", read_only};
+	mapped_region region2{shdmem, read_only};
+	
+	int arr[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+	//~ char *prev_motor_values = new char[9];
 	
 	//std::cout << "program started" << std::endl;
 	//infinite loop to check for new intensity maps from camera
 	for (;;)
 	{
 		//interprocess check for new messages
-		//if new message
-			//set arr[] = newest message
-			//set new_msg_received = true;
+		char *new_motor_values = static_cast<char*>(region2.get_address());
+		std::cout << "new_motor_values: " << new_motor_values << std::endl;
+		//~ if (new_motor_values != prev_motor_values) {
+			for (int i=0; i<NUM_MOTORS; i++){
+				arr[i] = new_motor_values[i] - '0';
+				//~ std::cout << new_motor_values[i] << std::endl;
+			}
+			//~ *prev_motor_values = *new_motor_values;
+			new_msg_received = true;
+		//~ }
 		
 		//check for intensity map somehow
 		if (new_msg_received) 
