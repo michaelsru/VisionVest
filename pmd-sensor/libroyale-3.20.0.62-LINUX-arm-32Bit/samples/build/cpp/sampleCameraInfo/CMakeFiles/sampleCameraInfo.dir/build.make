@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples
+CMAKE_SOURCE_DIR = /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build
+CMAKE_BINARY_DIR = /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build
 
 # Include any dependencies generated for this target.
 include cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/depend.make
@@ -59,16 +59,16 @@ include cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/flags.make
 
 cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.o: cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/flags.make
 cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.o: ../cpp/sampleCameraInfo/sampleCameraInfo.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.o"
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleCameraInfo && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.o -c /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleCameraInfo/sampleCameraInfo.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.o"
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleCameraInfo && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.o -c /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleCameraInfo/sampleCameraInfo.cpp
 
 cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.i"
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleCameraInfo && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleCameraInfo/sampleCameraInfo.cpp > CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.i
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleCameraInfo && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleCameraInfo/sampleCameraInfo.cpp > CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.i
 
 cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.s"
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleCameraInfo && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleCameraInfo/sampleCameraInfo.cpp -o CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.s
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleCameraInfo && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleCameraInfo/sampleCameraInfo.cpp -o CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.s
 
 cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.o.requires:
 
@@ -91,8 +91,8 @@ sampleCameraInfo_EXTERNAL_OBJECTS =
 cpp/sampleCameraInfo/sampleCameraInfo: cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/sampleCameraInfo.cpp.o
 cpp/sampleCameraInfo/sampleCameraInfo: cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/build.make
 cpp/sampleCameraInfo/sampleCameraInfo: cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable sampleCameraInfo"
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleCameraInfo && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sampleCameraInfo.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable sampleCameraInfo"
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleCameraInfo && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sampleCameraInfo.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/build: cpp/sampleCameraInfo/sampleCameraInfo
@@ -104,10 +104,10 @@ cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/requires: cpp/sampleCameraI
 .PHONY : cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/requires
 
 cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/clean:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleCameraInfo && $(CMAKE_COMMAND) -P CMakeFiles/sampleCameraInfo.dir/cmake_clean.cmake
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleCameraInfo && $(CMAKE_COMMAND) -P CMakeFiles/sampleCameraInfo.dir/cmake_clean.cmake
 .PHONY : cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/clean
 
 cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/depend:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleCameraInfo /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleCameraInfo /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleCameraInfo /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleCameraInfo /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : cpp/sampleCameraInfo/CMakeFiles/sampleCameraInfo.dir/depend
 

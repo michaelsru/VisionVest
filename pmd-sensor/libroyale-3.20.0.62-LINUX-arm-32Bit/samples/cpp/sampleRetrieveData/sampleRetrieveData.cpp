@@ -18,9 +18,13 @@
 #include <chrono>
 #include <cmath>
 #include <sample_utils/PlatformResources.hpp>
+#include <sample_utils/EventReporter.hpp>
+//~ #include <sample_utils/shared_memory_object.hpp>
+//~ #include <sample_utils/mapped_region.hpp>
 
 using namespace sample_utils;
 using namespace std;
+//~ using namespace boost::interprocess;
 
 /**
  * A listener which receives a callback to onNewData when each depth frame is captured.
@@ -241,11 +245,11 @@ public:
             cout << endl;
         }
         
-        cout << "rows: " << allFrames.size() << endl;
+        //~ cout << "rows: " << allFrames.size() << endl;
         //~ cout << "columns: " << sizeof allFrames[0] << endl;
         //~ cout << typeid(allFrames).name() << endl;
         // Print the data from all of the captured streams
-        int horizontal_average [42][12];
+        int horizontal_average [42][3];
         int i = 0;
         for (const auto &line : allFrames)
         {
@@ -259,8 +263,8 @@ public:
                 if (k == 49) {
                     break;
                 };
-                if (k != 0 && k % 4 == 0) {
-                    horizontal_average[i][horizontal_position] = total/4;
+                if (k != 0 && k % 16 == 0) {
+                    horizontal_average[i][horizontal_position] = total/16;
                     //~ avg_horizontal  += std::to_string(total/4);
                     horizontal_position += 1;
                     total = 0;
@@ -282,26 +286,32 @@ public:
         
         
         // Verticle avg
-        int response [8][12];
-        for (int y=5; y <= 40; y+=5){
-                for (int x=0; x<12; x++) {
+        int response [3][3];
+        for (int y=14; y <= 42; y+=14){
+                for (int x=0; x<3; x++) {
                     int temp = 0;
-                    for (int k=y-1; k>= y-5; k--) {
+                    for (int k=y-1; k>= y-14; k--) {
                         temp += horizontal_average[k][x];
                         //~ cout << "HORIZONTAL AVERAGE IS: " << horizontal_average[k][x] << endl;
                         
                     }
-                    int res_y = int(y/5) - 1;
+                    int res_y = int(y/14) - 1;
                     //~ cout << "(x->" << x << "y-> "<< res_y <<")"  << int(temp/5) << "--";
-                    response[res_y][x] = int(temp/5);
+                    response[res_y][x] = int(temp/14);
                 }
                 //~ cout << endl;
         }
         
-    
+        //~ std::string response_string = "[";
+        
+        
+        // sending response to the motors
+        //~ int *res = static_cast<int* [8][12]>(region.get_address());
+        //~ *res = response;
+        
         //~ cout << "PRINTING THE RESPONSE MATRIX" << endl;
-        for (int y=0;y<8;y++){
-            for(int x=0;x<12;x++){
+        for (int y=0;y<3;y++){
+            for(int x=0;x<3;x++){
                 cout << response[y][x];
             }
             cout << endl;
@@ -397,6 +407,11 @@ int main (int argc, char **argv)
     unique_ptr<royale::String> rrfFile;
     // if non-null, choose this use case instead of the default
     unique_ptr<royale::String> commandLineUseCase;
+    
+    // Set up boost interprocess
+    //~ shared_memory_object shdmem{open_or_create, "Boost", read_write};
+    //~ shdmem.truncate(1024);
+    //~ mapped_region region{shdmem, read_write};
 
     if (argc > 1)
     {
@@ -548,7 +563,7 @@ int main (int argc, char **argv)
     //
     // Non-mixed mode use cases have exactly one stream, mixed mode use cases have more than one.
     // For this example we only change the first stream.
-    if (cameraDevice->setExposureTime (200, streamIds[0]) != royale::CameraStatus::SUCCESS)
+    if (cameraDevice->setExposureTime (200, streamIds[0]) != royale::CameraStatus::SUCCESS) 
     {
         cerr << "Cannot set exposure time for stream" << streamIds[0] << endl;
     }

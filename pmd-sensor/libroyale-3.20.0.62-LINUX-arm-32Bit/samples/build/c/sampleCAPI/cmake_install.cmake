@@ -1,4 +1,4 @@
-# Install script for directory: /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/c/sampleCAPI
+# Install script for directory: /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/c/sampleCAPI
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

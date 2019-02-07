@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples
+CMAKE_SOURCE_DIR = /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build
+CMAKE_BINARY_DIR = /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleSlave/CMakeFiles/progress.marks
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleSlave/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles 0
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleSlave/CMakeFiles/progress.marks
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleSlave/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleSlave/clean
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleSlave/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleSlave/preinstall
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleSlave/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleSlave/preinstall
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleSlave/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 cpp/sampleSlave/CMakeFiles/sampleSlave.dir/rule:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleSlave/CMakeFiles/sampleSlave.dir/rule
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleSlave/CMakeFiles/sampleSlave.dir/rule
 .PHONY : cpp/sampleSlave/CMakeFiles/sampleSlave.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ sampleSlave: cpp/sampleSlave/CMakeFiles/sampleSlave.dir/rule
 
 # fast build rule for target.
 sampleSlave/fast:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleSlave/CMakeFiles/sampleSlave.dir/build.make cpp/sampleSlave/CMakeFiles/sampleSlave.dir/build
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleSlave/CMakeFiles/sampleSlave.dir/build.make cpp/sampleSlave/CMakeFiles/sampleSlave.dir/build
 .PHONY : sampleSlave/fast
 
 sampleSlave.o: sampleSlave.cpp.o
@@ -131,7 +131,7 @@ sampleSlave.o: sampleSlave.cpp.o
 
 # target to build an object file
 sampleSlave.cpp.o:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleSlave/CMakeFiles/sampleSlave.dir/build.make cpp/sampleSlave/CMakeFiles/sampleSlave.dir/sampleSlave.cpp.o
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleSlave/CMakeFiles/sampleSlave.dir/build.make cpp/sampleSlave/CMakeFiles/sampleSlave.dir/sampleSlave.cpp.o
 .PHONY : sampleSlave.cpp.o
 
 sampleSlave.i: sampleSlave.cpp.i
@@ -140,7 +140,7 @@ sampleSlave.i: sampleSlave.cpp.i
 
 # target to preprocess a source file
 sampleSlave.cpp.i:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleSlave/CMakeFiles/sampleSlave.dir/build.make cpp/sampleSlave/CMakeFiles/sampleSlave.dir/sampleSlave.cpp.i
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleSlave/CMakeFiles/sampleSlave.dir/build.make cpp/sampleSlave/CMakeFiles/sampleSlave.dir/sampleSlave.cpp.i
 .PHONY : sampleSlave.cpp.i
 
 sampleSlave.s: sampleSlave.cpp.s
@@ -149,7 +149,7 @@ sampleSlave.s: sampleSlave.cpp.s
 
 # target to generate assembly for a file
 sampleSlave.cpp.s:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleSlave/CMakeFiles/sampleSlave.dir/build.make cpp/sampleSlave/CMakeFiles/sampleSlave.dir/sampleSlave.cpp.s
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleSlave/CMakeFiles/sampleSlave.dir/build.make cpp/sampleSlave/CMakeFiles/sampleSlave.dir/sampleSlave.cpp.s
 .PHONY : sampleSlave.cpp.s
 
 # Help Target
@@ -175,6 +175,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

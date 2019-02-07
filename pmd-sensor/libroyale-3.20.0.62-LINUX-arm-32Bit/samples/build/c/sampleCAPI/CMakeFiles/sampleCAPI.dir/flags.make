@@ -6,5 +6,5 @@ C_FLAGS =
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/include -I/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/include/royaleCAPI -I/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/c/sampleCAPI/../../inc 
+C_INCLUDES = -I/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/include -I/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/include/royaleCAPI -I/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/c/sampleCAPI/../../inc 
 

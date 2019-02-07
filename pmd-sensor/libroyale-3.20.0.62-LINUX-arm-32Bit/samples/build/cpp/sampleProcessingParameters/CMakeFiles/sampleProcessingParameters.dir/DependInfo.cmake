@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleProcessingParameters/sampleProcessingParameters.cpp" "/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.o"
+  "/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleProcessingParameters/sampleProcessingParameters.cpp" "/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/include"
-  "/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/include/royaleCAPI"
+  "/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/include"
+  "/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/include/royaleCAPI"
   "../cpp/sampleProcessingParameters/../../inc"
   )
 

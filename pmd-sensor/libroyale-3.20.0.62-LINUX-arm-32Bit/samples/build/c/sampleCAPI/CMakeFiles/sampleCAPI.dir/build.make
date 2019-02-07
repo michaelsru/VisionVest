@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples
+CMAKE_SOURCE_DIR = /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build
+CMAKE_BINARY_DIR = /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build
 
 # Include any dependencies generated for this target.
 include c/sampleCAPI/CMakeFiles/sampleCAPI.dir/depend.make
@@ -59,16 +59,16 @@ include c/sampleCAPI/CMakeFiles/sampleCAPI.dir/flags.make
 
 c/sampleCAPI/CMakeFiles/sampleCAPI.dir/sampleCAPI.c.o: c/sampleCAPI/CMakeFiles/sampleCAPI.dir/flags.make
 c/sampleCAPI/CMakeFiles/sampleCAPI.dir/sampleCAPI.c.o: ../c/sampleCAPI/sampleCAPI.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object c/sampleCAPI/CMakeFiles/sampleCAPI.dir/sampleCAPI.c.o"
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/c/sampleCAPI && /usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sampleCAPI.dir/sampleCAPI.c.o   -c /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/c/sampleCAPI/sampleCAPI.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object c/sampleCAPI/CMakeFiles/sampleCAPI.dir/sampleCAPI.c.o"
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/c/sampleCAPI && /usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sampleCAPI.dir/sampleCAPI.c.o   -c /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/c/sampleCAPI/sampleCAPI.c
 
 c/sampleCAPI/CMakeFiles/sampleCAPI.dir/sampleCAPI.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/sampleCAPI.dir/sampleCAPI.c.i"
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/c/sampleCAPI && /usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/c/sampleCAPI/sampleCAPI.c > CMakeFiles/sampleCAPI.dir/sampleCAPI.c.i
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/c/sampleCAPI && /usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/c/sampleCAPI/sampleCAPI.c > CMakeFiles/sampleCAPI.dir/sampleCAPI.c.i
 
 c/sampleCAPI/CMakeFiles/sampleCAPI.dir/sampleCAPI.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/sampleCAPI.dir/sampleCAPI.c.s"
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/c/sampleCAPI && /usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/c/sampleCAPI/sampleCAPI.c -o CMakeFiles/sampleCAPI.dir/sampleCAPI.c.s
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/c/sampleCAPI && /usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/c/sampleCAPI/sampleCAPI.c -o CMakeFiles/sampleCAPI.dir/sampleCAPI.c.s
 
 c/sampleCAPI/CMakeFiles/sampleCAPI.dir/sampleCAPI.c.o.requires:
 
@@ -91,8 +91,8 @@ sampleCAPI_EXTERNAL_OBJECTS =
 c/sampleCAPI/sampleCAPI: c/sampleCAPI/CMakeFiles/sampleCAPI.dir/sampleCAPI.c.o
 c/sampleCAPI/sampleCAPI: c/sampleCAPI/CMakeFiles/sampleCAPI.dir/build.make
 c/sampleCAPI/sampleCAPI: c/sampleCAPI/CMakeFiles/sampleCAPI.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable sampleCAPI"
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/c/sampleCAPI && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sampleCAPI.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable sampleCAPI"
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/c/sampleCAPI && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sampleCAPI.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 c/sampleCAPI/CMakeFiles/sampleCAPI.dir/build: c/sampleCAPI/sampleCAPI
@@ -104,10 +104,10 @@ c/sampleCAPI/CMakeFiles/sampleCAPI.dir/requires: c/sampleCAPI/CMakeFiles/sampleC
 .PHONY : c/sampleCAPI/CMakeFiles/sampleCAPI.dir/requires
 
 c/sampleCAPI/CMakeFiles/sampleCAPI.dir/clean:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/c/sampleCAPI && $(CMAKE_COMMAND) -P CMakeFiles/sampleCAPI.dir/cmake_clean.cmake
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/c/sampleCAPI && $(CMAKE_COMMAND) -P CMakeFiles/sampleCAPI.dir/cmake_clean.cmake
 .PHONY : c/sampleCAPI/CMakeFiles/sampleCAPI.dir/clean
 
 c/sampleCAPI/CMakeFiles/sampleCAPI.dir/depend:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/c/sampleCAPI /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/c/sampleCAPI /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/c/sampleCAPI/CMakeFiles/sampleCAPI.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/c/sampleCAPI /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/c/sampleCAPI /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/c/sampleCAPI/CMakeFiles/sampleCAPI.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : c/sampleCAPI/CMakeFiles/sampleCAPI.dir/depend
 

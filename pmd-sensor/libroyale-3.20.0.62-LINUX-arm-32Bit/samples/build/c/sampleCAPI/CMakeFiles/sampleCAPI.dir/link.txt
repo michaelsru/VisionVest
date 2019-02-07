@@ -1,1 +1,1 @@
-/usr/bin/cc     CMakeFiles/sampleCAPI.dir/sampleCAPI.c.o  -o sampleCAPI  -L/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/bin -Wl,-rpath,/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/bin -rdynamic -lroyaleCAPI 
+/usr/bin/cc     CMakeFiles/sampleCAPI.dir/sampleCAPI.c.o  -o sampleCAPI  -L/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/bin -Wl,-rpath,/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/bin -rdynamic -lroyaleCAPI 

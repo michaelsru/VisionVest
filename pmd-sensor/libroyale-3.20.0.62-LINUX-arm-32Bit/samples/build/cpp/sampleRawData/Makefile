@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples
+CMAKE_SOURCE_DIR = /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build
+CMAKE_BINARY_DIR = /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleRawData/CMakeFiles/progress.marks
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleRawData/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles 0
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleRawData/CMakeFiles/progress.marks
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleRawData/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleRawData/clean
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleRawData/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleRawData/preinstall
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleRawData/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleRawData/preinstall
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleRawData/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 cpp/sampleRawData/CMakeFiles/sampleRawData.dir/rule:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleRawData/CMakeFiles/sampleRawData.dir/rule
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f CMakeFiles/Makefile2 cpp/sampleRawData/CMakeFiles/sampleRawData.dir/rule
 .PHONY : cpp/sampleRawData/CMakeFiles/sampleRawData.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ sampleRawData: cpp/sampleRawData/CMakeFiles/sampleRawData.dir/rule
 
 # fast build rule for target.
 sampleRawData/fast:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleRawData/CMakeFiles/sampleRawData.dir/build.make cpp/sampleRawData/CMakeFiles/sampleRawData.dir/build
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleRawData/CMakeFiles/sampleRawData.dir/build.make cpp/sampleRawData/CMakeFiles/sampleRawData.dir/build
 .PHONY : sampleRawData/fast
 
 sampleRawData.o: sampleRawData.cpp.o
@@ -131,7 +131,7 @@ sampleRawData.o: sampleRawData.cpp.o
 
 # target to build an object file
 sampleRawData.cpp.o:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleRawData/CMakeFiles/sampleRawData.dir/build.make cpp/sampleRawData/CMakeFiles/sampleRawData.dir/sampleRawData.cpp.o
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleRawData/CMakeFiles/sampleRawData.dir/build.make cpp/sampleRawData/CMakeFiles/sampleRawData.dir/sampleRawData.cpp.o
 .PHONY : sampleRawData.cpp.o
 
 sampleRawData.i: sampleRawData.cpp.i
@@ -140,7 +140,7 @@ sampleRawData.i: sampleRawData.cpp.i
 
 # target to preprocess a source file
 sampleRawData.cpp.i:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleRawData/CMakeFiles/sampleRawData.dir/build.make cpp/sampleRawData/CMakeFiles/sampleRawData.dir/sampleRawData.cpp.i
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleRawData/CMakeFiles/sampleRawData.dir/build.make cpp/sampleRawData/CMakeFiles/sampleRawData.dir/sampleRawData.cpp.i
 .PHONY : sampleRawData.cpp.i
 
 sampleRawData.s: sampleRawData.cpp.s
@@ -149,7 +149,7 @@ sampleRawData.s: sampleRawData.cpp.s
 
 # target to generate assembly for a file
 sampleRawData.cpp.s:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleRawData/CMakeFiles/sampleRawData.dir/build.make cpp/sampleRawData/CMakeFiles/sampleRawData.dir/sampleRawData.cpp.s
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(MAKE) -f cpp/sampleRawData/CMakeFiles/sampleRawData.dir/build.make cpp/sampleRawData/CMakeFiles/sampleRawData.dir/sampleRawData.cpp.s
 .PHONY : sampleRawData.cpp.s
 
 # Help Target
@@ -175,6 +175,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

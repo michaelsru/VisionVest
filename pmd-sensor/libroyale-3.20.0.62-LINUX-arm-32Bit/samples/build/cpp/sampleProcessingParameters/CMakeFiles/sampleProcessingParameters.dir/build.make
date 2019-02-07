@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples
+CMAKE_SOURCE_DIR = /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build
+CMAKE_BINARY_DIR = /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build
 
 # Include any dependencies generated for this target.
 include cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/depend.make
@@ -59,16 +59,16 @@ include cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir
 
 cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.o: cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/flags.make
 cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.o: ../cpp/sampleProcessingParameters/sampleProcessingParameters.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.o"
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.o -c /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleProcessingParameters/sampleProcessingParameters.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.o"
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.o -c /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleProcessingParameters/sampleProcessingParameters.cpp
 
 cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.i"
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleProcessingParameters/sampleProcessingParameters.cpp > CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.i
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleProcessingParameters/sampleProcessingParameters.cpp > CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.i
 
 cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.s"
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleProcessingParameters/sampleProcessingParameters.cpp -o CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.s
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleProcessingParameters/sampleProcessingParameters.cpp -o CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.s
 
 cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.o.requires:
 
@@ -91,8 +91,8 @@ sampleProcessingParameters_EXTERNAL_OBJECTS =
 cpp/sampleProcessingParameters/sampleProcessingParameters: cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/sampleProcessingParameters.cpp.o
 cpp/sampleProcessingParameters/sampleProcessingParameters: cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/build.make
 cpp/sampleProcessingParameters/sampleProcessingParameters: cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable sampleProcessingParameters"
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sampleProcessingParameters.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable sampleProcessingParameters"
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sampleProcessingParameters.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/build: cpp/sampleProcessingParameters/sampleProcessingParameters
@@ -104,10 +104,10 @@ cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/require
 .PHONY : cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/requires
 
 cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/clean:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters && $(CMAKE_COMMAND) -P CMakeFiles/sampleProcessingParameters.dir/cmake_clean.cmake
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters && $(CMAKE_COMMAND) -P CMakeFiles/sampleProcessingParameters.dir/cmake_clean.cmake
 .PHONY : cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/clean
 
 cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/depend:
-	cd /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleProcessingParameters /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters /home/pi/Desktop/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/cpp/sampleProcessingParameters /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters /home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : cpp/sampleProcessingParameters/CMakeFiles/sampleProcessingParameters.dir/depend
 
