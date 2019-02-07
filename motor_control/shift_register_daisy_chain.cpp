@@ -71,12 +71,17 @@ int main(int argc, char **argv)
 	int frames[NUM_INTENSITIES]; //each int128 is a "frame" of ~96~ bits
 	bool new_msg_received = true;
 	
-	int arr[] = {3, 10, 10, 4, 5, 6, 7, 8, 9};
+	int arr[] = {0, 0, 0, 0, 0, 0, 0, 0, 02};
 	
 	//std::cout << "program started" << std::endl;
 	//infinite loop to check for new intensity maps from camera
 	for (;;)
 	{
+		//interprocess check for new messages
+		//if new message
+			//set arr[] = newest message
+			//set new_msg_received = true;
+		
 		//check for intensity map somehow
 		if (new_msg_received) 
 		{
@@ -103,6 +108,7 @@ int main(int argc, char **argv)
 						frames[6]: 0 1 0 0 1
 						frames[7]: 0 1 0 0 0
 						frames[8]: 0 1 0 0 0
+						frames[9]: 0 0 0 0 0
 					*/
 				}
 			}
@@ -112,11 +118,11 @@ int main(int argc, char **argv)
 		for (int i=0; i< NUM_INTENSITIES; i++) 
 		{
 			//std::cout << "shift out frames: " << frames[i] << " binary: " << std::bitset<32>(frames[i]) << std::endl;
-			//shiftOut(frames[i], NUM_MOTORS);
+			shiftOut(frames[i], NUM_MOTORS);
 			//delay(1);
 			//shiftOut(511, 10);
 			//delay(500);
-			shiftOut(0, 10);
+			//shiftOut(0, 10);
 			//delay(500);
 		}
 		//delay(3000);
