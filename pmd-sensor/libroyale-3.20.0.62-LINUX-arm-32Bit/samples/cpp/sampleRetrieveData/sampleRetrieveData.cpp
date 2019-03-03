@@ -578,7 +578,7 @@ int main (int argc, char **argv)
     }
 
     // let the camera capture for some time
-    this_thread::sleep_for (chrono::seconds (5));
+    this_thread::sleep_for (chrono::seconds (360));
 
     // stop capture mode
     if (cameraDevice->stopCapture() != royale::CameraStatus::SUCCESS)
