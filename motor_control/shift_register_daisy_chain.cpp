@@ -80,7 +80,7 @@ int main(int argc, char **argv)
 	shared_memory_object shdmem{open_only, "MotorControl", read_only};
 	mapped_region region2{shdmem, read_only};
 	
-	int arr[] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+	int arr[48] = {};
 	//~ char *prev_motor_values = new char[9];
 	
 	//std::cout << "program started" << std::endl;
@@ -93,7 +93,7 @@ int main(int argc, char **argv)
 		//~ if (new_motor_values != prev_motor_values) {
 			for (int i=0; i<NUM_MOTORS; i++){
 				arr[i] = new_motor_values[i] - '0';
-				//~ std::cout << new_motor_values[i] << std::endl;
+				std::cout << new_motor_values[i] << std::endl;
 			}
 			//~ *prev_motor_values = *new_motor_values;
 			new_msg_received = true;
@@ -102,7 +102,8 @@ int main(int argc, char **argv)
 		//check for intensity map somehow
 		if (new_msg_received) 
 		{
-			//std::cout << "new msg received" << std::endl;
+			std::cout << "HELLO" << std::endl;
+			std::cout << "new msg received" << std::endl;
 			new_msg_received = false;
 			
 			//flush current frames

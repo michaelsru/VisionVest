@@ -57,6 +57,9 @@ class MyListener : public royale::IDepthDataListener
      * understand that a larger window is required.
      */
     static const size_t MAX_WIDTH = 76;
+    
+    static const size_t MATRIX_HORIZONTAL = 8;
+    static const size_t MATRIX_VERTICAL = 6;
 
     /**
      * Helper function to display the image as basic ASCII art.
@@ -252,7 +255,7 @@ public:
         //~ cout << "columns: " << sizeof allFrames[0] << endl;
         //~ cout << typeid(allFrames).name() << endl;
         // Print the data from all of the captured streams
-        int horizontal_average [42][3];
+        int horizontal_average [42][MATRIX_HORIZONTAL];
         int i = 0;
         for (const auto &line : allFrames)
         {
@@ -266,9 +269,8 @@ public:
                 if (k == 49) {
                     break;
                 };
-                if (k != 0 && k % 16 == 0) {
-                    horizontal_average[i][horizontal_position] = total/16;
-                    //~ avg_horizontal  += std::to_string(total/4);
+                if (k != 0 && k % 6 == 0) {
+                    horizontal_average[i][horizontal_position] = total/6;
                     horizontal_position += 1;
                     total = 0;
                 };
@@ -290,24 +292,37 @@ public:
         
         // Verticle avg
         std::string res_string;
-        int response [3][3];
-        for (int y=14; y <= 42; y+=14){
-                for (int x=0; x<3; x++) {
+        int response [MATRIX_VERTICAL][MATRIX_HORIZONTAL];
+        for (int y=7; y <= 42; y+=7){
+                for (int x=0; x < 8; x++) {
                     int temp = 0;
-                    for (int k=y-1; k>= y-14; k--) {
+                    for (int k=y-1; k>= y-7; k--) {
                         temp += horizontal_average[k][x];
-                        //~ cout << "HORIZONTAL AVERAGE IS: " << horizontal_average[k][x] << endl;
                         
                     }
-                    int res_y = int(y/14) - 1;
-                    //~ cout << "(x->" << x << "y-> "<< res_y <<")"  << int(temp/5) << "--";
-                    response[res_y][x] = int(temp/14);
-                    res_string.append(std::to_string(int(temp/14)));
+                    int res_y = int(y/7) - 1;
+                    response[res_y][x] = int(temp/7);
+                    res_string.append(std::to_string(int(temp/7)));
+                    
                 }
-                //~ cout << endl;
+                //~ cout << res_string << endl;
         }
-        cout << "printing string" << res_string << endl;
-        // Response array to string
+        
+        
+        // Response array 
+        std::string output_mat;
+        cout << "Current matrix is " << endl;
+        for (int i = 0; i < MATRIX_VERTICAL ; i++) {
+            for(int j = 0; j < MATRIX_HORIZONTAL ; j++) {
+                output_mat.append(std::to_string(int(response[i][j])));
+            }
+        cout << output_mat << endl;
+        output_mat = "";
+        }
+        
+        res_string = "hello";
+        cout << "printing response string" << res_string << endl;
+        
         
         
         // Interprocess  
