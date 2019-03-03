@@ -6,7 +6,7 @@ using namespace boost::interprocess;
 
 int main()
 {
-  shared_memory_object shdmem{open_or_create, "Boost", read_write};
+  shared_memory_object shdmem{open_or_create, "MotorControl", read_write};
   shdmem.truncate(1024);
   mapped_region region{shdmem, read_write};
   int i = 0;

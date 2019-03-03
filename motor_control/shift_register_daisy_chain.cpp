@@ -39,7 +39,7 @@ static const int DATA_PIN = 0;
 static const int LATCH_PIN = 2;
 static const int CLOCK_PIN = 1;
 //const int BUF_SIZE = 64; //should only really have 1 intensity map at a time.
-static const int NUM_MOTORS = 9;
+static const int NUM_MOTORS = 48;
 static const int NUM_INTENSITIES = 10; // the levels of intensities, also # of frames to complete a map.
 
 //MSB FIRST ALWAYS
@@ -77,7 +77,7 @@ int main(int argc, char **argv)
 	bool new_msg_received = true;
 	
 	//interprocess
-	shared_memory_object shdmem{open_only, "MotorControl", read_only};
+	shared_memory_object shdmem{open_only, "MotorControl2", read_only};
 	mapped_region region2{shdmem, read_only};
 	
 	int arr[48] = {};
@@ -102,7 +102,7 @@ int main(int argc, char **argv)
 		//check for intensity map somehow
 		if (new_msg_received) 
 		{
-			std::cout << "HELLO" << std::endl;
+			//~ std::cout << "HELLO" << std::endl;
 			std::cout << "new msg received" << std::endl;
 			new_msg_received = false;
 			

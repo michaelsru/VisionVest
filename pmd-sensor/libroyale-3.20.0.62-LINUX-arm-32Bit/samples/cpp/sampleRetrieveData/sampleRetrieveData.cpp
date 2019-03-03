@@ -319,18 +319,21 @@ public:
         cout << output_mat << endl;
         output_mat = "";
         }
-        
-        res_string = "hello";
+        // Interprocess 
+        try {
+            cout << "going into try" << endl;
+            shared_memory_object shdmem{open_or_create, "MotorControl2", read_write};
+            shdmem.truncate(1024);
+            mapped_region region{shdmem, read_write};
+            std::strcpy(static_cast<char* >(region.get_address()), res_string.c_str());
+        } 
+        catch(...) {
+            cout << "going into catch" << endl;
+            shared_memory_object::remove("MotorControl2");
+            throw;
+        }
+        cout << "printing 5" << endl;
         cout << "printing response string" << res_string << endl;
-        
-        
-        
-        // Interprocess  
-        shared_memory_object shdmem{open_or_create, "MotorControl", read_write};
-        shdmem.truncate(1024);
-        mapped_region region{shdmem, read_write};
-    
-        std::strcpy(static_cast<char* >(region.get_address()), res_string.c_str());
         //~ *write_to_motor = res_string;
         //~ std::cout << "writing " << *write_to_motor << '\n';
         
