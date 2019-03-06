@@ -25,44 +25,60 @@
 #include <wiringPi.h>
 #include <wiringShift.h>
 #include <sr595.h>
-#include <iostream>
 #include <string.h>
 #include <stdint.h>
 
-#include <bitset>
-
-#include <boost/interprocess/shared_memory_object.hpp>
-#include <boost/interprocess/mapped_region.hpp>
-
-using namespace boost::interprocess;
 
 static const int DATA_PIN = 0;
 static const int LATCH_PIN = 2;
 static const int CLOCK_PIN = 1;
-//const int BUF_SIZE = 64; //should only really have 1 intensity map at a time.
-static const int NUM_MOTORS = 9;
-static const int NUM_INTENSITIES = 10; // the levels of intensities, also # of frames to complete a map.
 
 //MSB FIRST ALWAYS
-void shiftOut(int64_t value, int size)
+void shiftOutTest(unsigned long long int value, int size)
 {
 	digitalWrite(LATCH_PIN, 0);
-	
+	unsigned long long int write;
 	for (int i=size-1; i>=0; i--)
 	{
-		digitalWrite(DATA_PIN, value & (1<<i));
+		write = (value >> i)%2;
+		printf("%llu , %i \n", write, i);
+		digitalWrite(DATA_PIN, (value >> i) %2);
+		//digitalWrite(DATA_PIN, 1);
 		
-		digitalWrite(CLOCK_PIN, HIGH); delayMicroseconds(1);
-		digitalWrite(CLOCK_PIN, LOW); delayMicroseconds(1);
+		digitalWrite(CLOCK_PIN, HIGH); delayMicroseconds(5);
+		digitalWrite(CLOCK_PIN, LOW); delayMicroseconds(5);
 	}
 	
+	//~ digitalWrite(LATCH_PIN, 1);
+	//~ delay(1000);
+	//~ digitalWrite(LATCH_PIN, 0);
+	//~ for (int i=size/2; i<size; i++)
+	//~ {
+		//~ write = value & (1ULL<<i);
+		//~ printf("%llu , %i \n", write, i);
+		//~ digitalWrite(DATA_PIN, value & (1ULL<<i));
+		digitalWrite(DATA_PIN, 0);
+		
+		//~ digitalWrite(CLOCK_PIN, HIGH); delayMicroseconds(10);
+		//~ digitalWrite(CLOCK_PIN, LOW); delayMicroseconds(10);
+	//~ }
+	
 	digitalWrite(LATCH_PIN, 1);
+	
 }
 
 int main(int argc, char **argv)
 {
-	std::cout << "start" << std::endl;
+	unsigned long long int value = (1ULL << 48) - 1;
+	value = 65535;
+	//~ long long  value = (1ULL << 33) - 1;
+	printf("size of value is %d\n", sizeof(value));
+	int size = 48;
+	int delay_time = 2000;
+	
+	printf("Start\n");
 	wiringPiSetup();
+	printf("wiri48ngPi setup finished\n");
 	
 	// initialize shift register and RPi pins
 	pinMode(DATA_PIN, OUTPUT);
@@ -72,18 +88,23 @@ int main(int argc, char **argv)
 	digitalWrite(DATA_PIN, LOW);
 	digitalWrite(CLOCK_PIN, LOW);
 	digitalWrite(LATCH_PIN, HIGH);
+	shiftOutTest(0, size);
 	
 	//std::cout << "program started" << std::endl;
 	//infinite loop to check for new intensity maps from camera
-	printf("shifting");
-	for (;;)
+	printf("Begin shifting\n");
+	while(1)
 	{
-		shiftOut((2^8)-1, 8);
-		printf("shifting %d", (2^8)-1);
+		printf("size of value is %d\n", sizeof(value));
+		printf("shifting out %llu\n", value);
+		shiftOutTest(value, size);
+		//shiftOutAll(1, size);
 		//shiftOut((2^48)-1, 48);
 		//shiftOut(0, 10);
-		delay(2000);
-		shiftOut(0, 48);
-		delay(2000);
+		delay(delay_time);
+		printf("shifting out none\n");
+		shiftOutTest(0, size);
+		//shiftOutAll(0, size);
+		delay(delay_time);
 	}
 }

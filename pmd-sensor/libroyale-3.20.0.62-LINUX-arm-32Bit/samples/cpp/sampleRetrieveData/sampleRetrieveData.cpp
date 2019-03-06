@@ -264,7 +264,7 @@ public:
             int horizontal_position = 0;
             std::string line_data = line.data();
             std::string avg_horizontal = "";
-            //~ cout << "printing line: " << i << " "<< string (line.data(), line.size()) << endl;
+            cout << string (line.data(), line.size()) << endl;
             for (char& c :  line_data) {
                 if (k == 49) {
                     break;
@@ -321,7 +321,7 @@ public:
         }
         // Interprocess 
         try {
-            cout << "going into try" << endl;
+            cout << "going into try2" << endl;
             shared_memory_object shdmem{open_or_create, "MotorControl2", read_write};
             shdmem.truncate(1024);
             mapped_region region{shdmem, read_write};

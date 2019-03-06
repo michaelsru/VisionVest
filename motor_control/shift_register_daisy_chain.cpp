@@ -43,16 +43,16 @@ static const int NUM_MOTORS = 48;
 static const int NUM_INTENSITIES = 10; // the levels of intensities, also # of frames to complete a map.
 
 //MSB FIRST ALWAYS
-void shiftOut(int value, int size)
+void shiftOut(unsigned long long int value, int size)
 {
 	digitalWrite(LATCH_PIN, 0);
 	
 	for (int i=size-1; i>=0; i--)
 	{
-		digitalWrite(DATA_PIN, value & (1<<i));
+		digitalWrite(DATA_PIN, (value >> i) %2);
 		
-		digitalWrite(CLOCK_PIN, HIGH); delayMicroseconds(1);
-		digitalWrite(CLOCK_PIN, LOW); delayMicroseconds(1);
+		digitalWrite(CLOCK_PIN, HIGH); delayMicroseconds(3);
+		digitalWrite(CLOCK_PIN, LOW); delayMicroseconds(3);
 	}
 	
 	digitalWrite(LATCH_PIN, 1);
@@ -73,12 +73,13 @@ int main(int argc, char **argv)
 	digitalWrite(LATCH_PIN, HIGH);
 
 	//int map[NUM_MOTORS];
-	int frames[NUM_INTENSITIES]; //each int128 is a "frame" of ~96~ bits
+	unsigned long long int frames[NUM_INTENSITIES]; //each int128 is a "frame" of ~96~ bits
 	bool new_msg_received = true;
 	
 	//interprocess
-	shared_memory_object shdmem{open_only, "MotorControl2", read_only};
-	mapped_region region2{shdmem, read_only};
+	shared_memory_object shdmem{open_or_create, "MotorControl2", read_write};
+	shdmem.truncate(1024);
+	mapped_region region2{shdmem, read_write};
 	
 	int arr[48] = {};
 	//~ char *prev_motor_values = new char[9];
@@ -93,7 +94,7 @@ int main(int argc, char **argv)
 		//~ if (new_motor_values != prev_motor_values) {
 			for (int i=0; i<NUM_MOTORS; i++){
 				arr[i] = new_motor_values[i] - '0';
-				std::cout << new_motor_values[i] << std::endl;
+				//~ std::cout << new_motor_values[i] << std::endl;
 			}
 			//~ *prev_motor_values = *new_motor_values;
 			new_msg_received = true;
@@ -103,7 +104,7 @@ int main(int argc, char **argv)
 		if (new_msg_received) 
 		{
 			//~ std::cout << "HELLO" << std::endl;
-			std::cout << "new msg received" << std::endl;
+			//~ std::cout << "new msg received" << std::endl;
 			new_msg_received = false;
 			
 			//flush current frames
@@ -111,7 +112,7 @@ int main(int argc, char **argv)
 			
 			for (int i=0; i<NUM_INTENSITIES-1; i++) //iterating through each frame
 			{
-				for (int j=0; j<9; j++) //iterating through each motor on the frame
+				for (int j=0; j<48; j++) //iterating through each motor on the frame
 				{
 					frames[i] |= (arr[j] > i) << j; //should populate each frame with correct PWM command
 					//std::cout << "shift out frames (binary): " << std::bitset<32>(frames[0]) << std::endl;

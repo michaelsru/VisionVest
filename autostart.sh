@@ -3,4 +3,7 @@
 # sudo /home/pi/Documents/VisionVest/motor_control/shift_register_daisy_chain && fg
 
 
-sudo /home/pi/Desktop/executables/shift_register_daisy_chain & sudo /home/pi/Desktop/executables/sampleRetrieveData && fg
+#sudo /home/pi/Desktop/executables/sampleRetrieveData & sudo /home/pi/Desktop/executables/shift_register_daisy_chain && fg
+#sudo /home/pi/Desktop/executables/all_motors_on &
+#sudo /home/pi/Documents/VisionVest/motor_control/all_motors_on_test &
+
