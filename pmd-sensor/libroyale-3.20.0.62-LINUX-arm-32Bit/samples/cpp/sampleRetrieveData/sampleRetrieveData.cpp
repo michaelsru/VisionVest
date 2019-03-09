@@ -19,6 +19,7 @@
 #include <cmath>
 #include <sample_utils/PlatformResources.hpp>
 #include <string>
+#include <fstream>
 
 #include <sample_utils/shared_memory_object.hpp>
 #include <sample_utils/mapped_region.hpp>
@@ -256,6 +257,16 @@ public:
         //~ cout << typeid(allFrames).name() << endl;
         // Print the data from all of the captured streams
         int horizontal_average [42][MATRIX_HORIZONTAL];
+        
+        ofstream outfile, outfile2;
+
+        try {
+            cout << "going into outfile try" << endl;         
+            outfile.open("/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleRetrieveData/max_resolution.txt", std::ios_base::app | std::ios_base::out);
+            outfile2.open("/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleRetrieveData/actual_resolution.txt", std::ios_base::app | std::ios_base::out);
+        } catch(...) {
+            cout << "going into outfile catch" << endl;
+        }
         int i = 0;
         for (const auto &line : allFrames)
         {
@@ -264,6 +275,8 @@ public:
             int horizontal_position = 0;
             std::string line_data = line.data();
             std::string avg_horizontal = "";
+            outfile <<  line.data();
+
             cout << string (line.data(), line.size()) << endl;
             for (char& c :  line_data) {
                 if (k == 49) {
@@ -280,6 +293,9 @@ public:
             i += 1;
         }
         
+        outfile << "\n ";
+        cout<< "count-lines" <<endl;
+        outfile.close();
         
         //~ cout << "PRINING THE HORIZONTRAL AVG" << endl;
         //~ for (int y=0;y<42;y++){
@@ -315,14 +331,21 @@ public:
         for (int i = 0; i < MATRIX_VERTICAL ; i++) {
             for(int j = 0; j < MATRIX_HORIZONTAL ; j++) {
                 output_mat.append(std::to_string(int(response[i][j])));
+                
             }
         cout << output_mat << endl;
         output_mat = "";
         }
+        
+        
+        outfile2 <<  res_string << "\n" ;
+        outfile2.close();
+
+
         // Interprocess 
         try {
             cout << "going into try2" << endl;
-            shared_memory_object shdmem{open_or_create, "MotorControl2", read_write};
+            shared_memory_object shdmem{open_or_create, "MotorControl3", read_write};
             shdmem.truncate(1024);
             mapped_region region{shdmem, read_write};
             std::strcpy(static_cast<char* >(region.get_address()), res_string.c_str());
@@ -578,7 +601,7 @@ int main (int argc, char **argv)
     }
 
     // let the camera capture for some time
-    this_thread::sleep_for (chrono::seconds (5));
+    this_thread::sleep_for (chrono::seconds (10));
 
     // Change the exposure time for the first stream of the use case (Royale will limit this to an
     // eye-safe exposure time, with limits defined by the use case).  The time is given in
@@ -596,7 +619,7 @@ int main (int argc, char **argv)
     }
 
     // let the camera capture for some time
-    this_thread::sleep_for (chrono::seconds (360));
+    this_thread::sleep_for (chrono::seconds (10));
 
     // stop capture mode
     if (cameraDevice->stopCapture() != royale::CameraStatus::SUCCESS)
