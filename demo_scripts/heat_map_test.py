@@ -2,6 +2,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 from pylab import savefig
+import time
 
 
 
@@ -17,7 +18,8 @@ def generate_heatmap(mat, i):
     heat_map = sns.heatmap(mat, annot=True)
     figure = heat_map.get_figure()
     figure.savefig('heat_map%s.png' % i)
-    plt.show()
+    plt.clf()
+    # plt.show()
 
 
 def output_images(fname, m, n):
@@ -32,8 +34,8 @@ def output_images(fname, m, n):
             for x in line[start:end]:
                 a.append(int(x))
             mat_rep.append(a)
-            start += n
-            end += n
+            start += 76 # n or 8 for actual
+            end += 76 # n or 8 for actual
         np_mat_rep = np.array(mat_rep)
         generate_heatmap(np_mat_rep, i)
     
