@@ -46,6 +46,6 @@ def output_images(fname, m, n):
 
 if __name__ == "__main__":
     # output_images(actual_resolution, 6, 8)
-    output_images(actual_resolution, 42,48)
+    output_images(max_resolution, 42,48)
 
     
