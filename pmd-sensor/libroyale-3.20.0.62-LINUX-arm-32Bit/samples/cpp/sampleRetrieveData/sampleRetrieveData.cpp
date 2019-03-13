@@ -252,9 +252,6 @@ public:
             cout << endl;
         }
         
-        //~ cout << "rows: " << allFrames.size() << endl;
-        //~ cout << "columns: " << sizeof allFrames[0] << endl;
-        //~ cout << typeid(allFrames).name() << endl;
         // Print the data from all of the captured streams
         int horizontal_average [42][MATRIX_HORIZONTAL];
         
@@ -294,21 +291,12 @@ public:
         }
         
         outfile << "\n ";
-        cout<< "count-lines" <<endl;
         outfile.close();
-        
-        //~ cout << "PRINING THE HORIZONTRAL AVG" << endl;
-        //~ for (int y=0;y<42;y++){
-            //~ for(int x=0;x<12;x++){
-                //~ cout <<"(x->" << x << "y-> "<< y <<")" << horizontal_average[y][x];
-            //~ }
-            //~ cout << endl;
-        //~ }
         
         
         // Verticle avg
-        std::string res_string;
         int response [MATRIX_VERTICAL][MATRIX_HORIZONTAL];
+        std::string outfile2_string;
         for (int y=7; y <= 42; y+=7){
                 for (int x=0; x < 8; x++) {
                     int temp = 0;
@@ -318,56 +306,54 @@ public:
                     }
                     int res_y = int(y/7) - 1;
                     response[res_y][x] = int(temp/7);
-                    res_string.append(std::to_string(int(temp/7)));
-                    
+                    outfile2_string.append(std::to_string(int(temp/7)));
                 }
-                //~ cout << res_string << endl;
         }
         
+        // outputting the file with a inverted image
+        outfile2 <<  outfile2_string << "\n" ;
+        outfile2.close();
         
-        // Response array 
+        // Matrix inversion about the x-axis
+        int size = 6;
+        int bound = 3;
+        for (int i = 0; i < bound ; i++) {
+            swap(response[i], response[size - i - 1]);
+        }
+
+        
+        // Printing the final output matrix and creating the response string
         std::string output_mat;
-        cout << "Current matrix is " << endl;
+        std::string res_string;
+        cout << "Matrix after inversion is " << endl;
         for (int i = 0; i < MATRIX_VERTICAL ; i++) {
             for(int j = 0; j < MATRIX_HORIZONTAL ; j++) {
                 output_mat.append(std::to_string(int(response[i][j])));
+                res_string.append(std::to_string(int(response[i][j])));
                 
             }
-        cout << output_mat << endl;
-        output_mat = "";
+            cout << output_mat << endl;
+            output_mat = "";
         }
         
         
-        outfile2 <<  res_string << "\n" ;
-        outfile2.close();
+        
 
 
         // Interprocess 
         try {
-            cout << "going into try2" << endl;
+            cout << "going into interprocess try" << endl;
             shared_memory_object shdmem{open_or_create, "MotorControl3", read_write};
             shdmem.truncate(1024);
             mapped_region region{shdmem, read_write};
             std::strcpy(static_cast<char* >(region.get_address()), res_string.c_str());
         } 
         catch(...) {
-            cout << "going into catch" << endl;
-            shared_memory_object::remove("MotorControl2");
+            cout << "going into interprocess catch" << endl;
+            shared_memory_object::remove("MotorControl3");
             throw;
         }
-        cout << "printing 5" << endl;
-        cout << "printing response string" << res_string << endl;
-        //~ *write_to_motor = res_string;
-        //~ std::cout << "writing " << *write_to_motor << '\n';
         
-        //~ cout << "PRINTING THE RESPONSE MATRIX" << endl;
-        for (int y=0;y<3;y++){
-            for(int x=0;x<3;x++){
-                cout << response[y][x];
-            }
-            cout << endl;
-        }
-    
         for (auto streamId : m_streamIds)
         {
             const auto &exposureTimes = allExposureTimes.find (streamId);
