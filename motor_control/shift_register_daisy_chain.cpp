@@ -47,7 +47,7 @@ void shiftOut(unsigned long long int value, int size)
 {
 	digitalWrite(LATCH_PIN, 0);
 	
-	for (int i=size-1; i>=0; i--)
+	i=size-1; i>=0; i--)
 	{
 		digitalWrite(DATA_PIN, (value >> i) %2);
 		
@@ -77,7 +77,7 @@ int main(int argc, char **argv)
 	bool new_msg_received = true;
 	
 	//interprocess
-	shared_memory_object shdmem{open_or_create, "MotorControl2", read_write};
+	shared_memory_object shdmem{open_or_create, "MotorControl5", read_write};
 	shdmem.truncate(1024);
 	mapped_region region2{shdmem, read_write};
 	

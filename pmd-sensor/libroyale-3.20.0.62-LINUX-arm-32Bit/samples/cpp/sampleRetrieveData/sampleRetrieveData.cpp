@@ -259,8 +259,8 @@ public:
 
         try {
             cout << "going into outfile try" << endl;         
-            outfile.open("/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleRetrieveData/max_resolution.txt", std::ios_base::app | std::ios_base::out);
-            outfile2.open("/home/pi/Documents/VisionVest/pmd-sensor/libroyale-3.20.0.62-LINUX-arm-32Bit/samples/build/cpp/sampleRetrieveData/actual_resolution.txt", std::ios_base::app | std::ios_base::out);
+            outfile.open("/home/pi/Desktop/executables/collected_data/max_res.txt", std::ios_base::app | std::ios_base::out);
+            outfile2.open("/home/pi/Desktop/executables/collected_data/act_res.txt", std::ios_base::app | std::ios_base::out);
         } catch(...) {
             cout << "going into outfile catch" << endl;
         }
@@ -337,20 +337,20 @@ public:
         }
         
         
-        
+        cout << "the resposne string is" << res_string << endl;
 
 
         // Interprocess 
         try {
             cout << "going into interprocess try" << endl;
-            shared_memory_object shdmem{open_or_create, "MotorControl3", read_write};
+            shared_memory_object shdmem{open_or_create, "MotorControl5", read_write};
             shdmem.truncate(1024);
             mapped_region region{shdmem, read_write};
             std::strcpy(static_cast<char* >(region.get_address()), res_string.c_str());
         } 
         catch(...) {
             cout << "going into interprocess catch" << endl;
-            shared_memory_object::remove("MotorControl3");
+            shared_memory_object::remove("MotorControl5");
             throw;
         }
         
@@ -587,7 +587,7 @@ int main (int argc, char **argv)
     }
 
     // let the camera capture for some time
-    this_thread::sleep_for (chrono::seconds (10));
+    this_thread::sleep_for (chrono::seconds (60));
 
     // Change the exposure time for the first stream of the use case (Royale will limit this to an
     // eye-safe exposure time, with limits defined by the use case).  The time is given in
@@ -605,7 +605,7 @@ int main (int argc, char **argv)
     }
 
     // let the camera capture for some time
-    this_thread::sleep_for (chrono::seconds (10));
+    this_thread::sleep_for (chrono::seconds (60));
 
     // stop capture mode
     if (cameraDevice->stopCapture() != royale::CameraStatus::SUCCESS)
