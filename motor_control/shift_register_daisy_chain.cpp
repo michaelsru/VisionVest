@@ -47,7 +47,7 @@ void shiftOut(unsigned long long int value, int size)
 {
 	digitalWrite(LATCH_PIN, 0);
 	
-	i=size-1; i>=0; i--)
+	for (int i=size-1; i>=0; i--)
 	{
 		digitalWrite(DATA_PIN, (value >> i) %2);
 		
