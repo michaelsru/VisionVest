@@ -81,12 +81,12 @@ class MyListener : public royale::IDepthDataListener
         }
         const royale::Vector<royale::Pair<float, char>> DEPTH_LETTER
         {
-            {0.50f, '8'},
-            {1.00f, '7'},
-            {2.00f, '5'},
-            {3.00f, '3'},
-            {4.00f, '1'},
-            {8.00f, '0'}
+            {1.00f, '9'},
+            {2.00f, '6'},
+            {3.00f, '6'},
+            {4.00f, '4'},
+            {4.50f, '4'},
+            {5.00f, '0'}
         };
         for (auto x : DEPTH_LETTER)
         {
@@ -587,7 +587,7 @@ int main (int argc, char **argv)
     }
 
     // let the camera capture for some time
-    this_thread::sleep_for (chrono::seconds (60));
+    this_thread::sleep_for (chrono::seconds (INT_MAX));
 
     // Change the exposure time for the first stream of the use case (Royale will limit this to an
     // eye-safe exposure time, with limits defined by the use case).  The time is given in
@@ -605,7 +605,7 @@ int main (int argc, char **argv)
     }
 
     // let the camera capture for some time
-    this_thread::sleep_for (chrono::seconds (60));
+    this_thread::sleep_for (chrono::seconds (INT_MAX));
 
     // stop capture mode
     if (cameraDevice->stopCapture() != royale::CameraStatus::SUCCESS)
