@@ -7,9 +7,9 @@ import time
 
 
 
-actual_resolution = 'data/actual_resolution.txt'
+actual_resolution = 'data/final_video/act_res.txt'
 
-max_resolution = 'data/on_startup_1/max_res.txt'
+max_resolution = 'data/final_video/max_res.txt'
 
 
 
@@ -22,8 +22,12 @@ def generate_heatmap(mat, i):
 
 def output_images(fname, m, n):
     fp = open(fname, 'r')
-    for i, line in enumerate(fp):
-        if i < 99:
+    lines_list = fp.readlines()
+    fp.close()
+    lines_list = lines_list[::-1]
+    len_lines = len(lines_list)
+    for i, line in enumerate(lines_list):
+        if i < 10:
             continue
         line = line.strip()
         start = 0
@@ -34,14 +38,14 @@ def output_images(fname, m, n):
             for x in line[start:end]:
                 a.append(int(x))
             mat_rep.append(a)
-            start += 76 # n or 8 for actual
-            end += 76 # n or 8 for actual
+            start += 8 # n or 8 for actual
+            end += 8 # n or 8 for actual
         np_mat_rep = np.array(mat_rep)
         np_mat_rep = np.flipud(np_mat_rep)
         np_mat_rep = np.fliplr(np_mat_rep)
         print('matrix is' , np_mat_rep)
         print('i is', i)
-        generate_heatmap(np_mat_rep, i)
+        generate_heatmap(np_mat_rep, len_lines - i)
         
     
     
@@ -52,7 +56,7 @@ def output_images(fname, m, n):
 
 
 if __name__ == "__main__":
-    # output_images(actual_resolution, 6, 8)
-    output_images(max_resolution, 42,48)
+    output_images(actual_resolution, 6, 8)
+    # output_images(max_resolution, 42,48)
 
     
